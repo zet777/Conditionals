@@ -10,31 +10,38 @@ namespace Conditionals
     {
         static void Main(string[] args)
         {
-            uint quontiti, price;
+            decimal tileQuontiti, tilePrice;
             {
                 Console.Write("Количество плитки: ");
-                quontiti =  Convert.ToUInt32(Console.ReadLine());
+                string stringQuontiti = Console.ReadLine();
+                tileQuontiti =  Convert.ToDecimal(stringQuontiti);
+                
                 Console.Write("Цена за 1м. кв. плитки: ");
-                price = Convert.ToUInt32(Console.ReadLine());
+                string stringPrice = Console.ReadLine();
+                tilePrice = Convert.ToDecimal(stringPrice);
             }
 
-            decimal cost = quontiti * price; // руб. 
+            decimal tileCost = tileQuontiti * tilePrice; // руб. 
 
-            decimal discount;
-            if (quontiti >= 100)
+            decimal discount; // руб. 
+            {
+                const decimal MIN_TILE_QUANTITY_FOR_DISCOUNT = 100; // м. кв.
+                bool discountAvailable = tileQuontiti >= MIN_TILE_QUANTITY_FOR_DISCOUNT;
+                
+                if (discountAvailable)
                 {
                     const decimal DISCOUNT_PERSENTAGE = 10; // %
-                    discount = cost / 100 * DISCOUNT_PERSENTAGE;
+                    discount = tileCost / 100 * DISCOUNT_PERSENTAGE;
                 }
-            else
-               discount = 0;
-
-            decimal paymentAmoount = cost - discount;
-
-
+                else
+                    discount = 0;
+            }
+            decimal paymentAmoount = tileCost - discount;
 
 
-            Console.WriteLine($"Общая стоимость плитки: {cost} руб.");
+
+
+            Console.WriteLine($"Общая стоимость плитки: {tileCost} руб.");
             Console.WriteLine($"Скидка                : {discount} руб.");
             Console.WriteLine($"Сумма к оплате        : {paymentAmoount} руб.");
 
