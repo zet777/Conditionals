@@ -14,19 +14,25 @@ namespace Conditionals
             {
                 Console.Write("Количество плитки: ");
                 quontiti =  Convert.ToUInt32(Console.ReadLine());
-                Console.Write("Цена зф 1м. кв. плитки: ");
+                Console.Write("Цена за 1м. кв. плитки: ");
                 price = Convert.ToUInt32(Console.ReadLine());
             }
 
             decimal cost = quontiti * price; // руб. 
 
             decimal discount;
-            {
-                const decimal DISCOUNT_PERSENTAGE = 10; // %
-                discount = cost / 100 * DISCOUNT_PERSENTAGE;
-            }
-            
-             decimal paymentAmoount = cost - discount;
+            if (quontiti >= 100)
+                {
+                    const decimal DISCOUNT_PERSENTAGE = 10; // %
+                    discount = cost / 100 * DISCOUNT_PERSENTAGE;
+                }
+            else
+               discount = 0;
+
+            decimal paymentAmoount = cost - discount;
+
+
+
 
             Console.WriteLine($"Общая стоимость плитки: {cost} руб.");
             Console.WriteLine($"Скидка                : {discount} руб.");
