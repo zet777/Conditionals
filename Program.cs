@@ -25,16 +25,21 @@ namespace Conditionals
 
             decimal discount; // руб. 
             {
-                const decimal MIN_TILE_QUANTITY_FOR_DISCOUNT = 100; // м. кв.
-                bool discountAvailable = tileQuontiti >= MIN_TILE_QUANTITY_FOR_DISCOUNT;
-                
-                if (discountAvailable)
-                {
-                    const decimal DISCOUNT_PERSENTAGE = 10; // %
-                    discount = tileCost / 100 * DISCOUNT_PERSENTAGE;
+                const decimal MIN_TILE_QTY_FOR_DISCOUNT_20_PCT = 500; // м. кв.
+                bool discount20PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_20_PCT;
+                decimal discountPersentage;
+
+                if (discount20PctAvailable)
+                { 
+                    discountPersentage = 20; // %
                 }
                 else
-                    discount = 0;
+                {
+                    discountPersentage = 10; // %
+                   
+                }
+
+                discount = tileCost / 100 * discountPersentage;
             }
             decimal paymentAmoount = tileCost - discount;
 
@@ -46,6 +51,7 @@ namespace Conditionals
             Console.WriteLine($"Сумма к оплате        : {paymentAmoount} руб.");
 
             Console.ReadLine();
+            
         }
     }
 }
