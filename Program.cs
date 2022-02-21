@@ -23,24 +23,28 @@ namespace Conditionals
 
             decimal tileCost = tileQuontiti * tilePrice; // руб. 
 
-            decimal discount; // руб. 
+            decimal discount; // руб.
             {
-                const decimal MIN_TILE_QTY_FOR_DISCOUNT_20_PCT = 500; // м. кв.
-                bool discount20PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_20_PCT;
                 decimal discountPersentage;
-
-                if (discount20PctAvailable)
-                { 
-                    discountPersentage = 20; // %
-                }
-                else
                 {
-                    discountPersentage = 10; // %
-                   
+                    const decimal MIN_TILE_QTY_FOR_DISCOUNT_20_PCT = 500; // м. кв.
+                    bool discount20PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_20_PCT;
+
+
+                    if (discount20PctAvailable)
+                    {
+                        discountPersentage = 20; // %
+                    }
+                    else
+                    {
+                        discountPersentage = 10; // %
+
+                    }
                 }
 
                 discount = tileCost / 100 * discountPersentage;
             }
+            
             decimal paymentAmoount = tileCost - discount;
 
 
