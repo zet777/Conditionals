@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Conditionals
 {
@@ -14,8 +10,8 @@ namespace Conditionals
             {
                 Console.Write("Количество плитки: ");
                 string stringQuontiti = Console.ReadLine();
-                tileQuontiti =  Convert.ToDecimal(stringQuontiti);
-                
+                tileQuontiti = Convert.ToDecimal(stringQuontiti);
+
                 Console.Write("Цена за 1м. кв. плитки: ");
                 string stringPrice = Console.ReadLine();
                 tilePrice = Convert.ToDecimal(stringPrice);
@@ -27,24 +23,35 @@ namespace Conditionals
             {
                 decimal discountPersentage;
                 {
-                    const decimal MIN_TILE_QTY_FOR_DISCOUNT_20_PCT = 500; // м. кв.
-                    bool discount20PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_20_PCT;
-
+                    bool discount20PctAvailable, discount50PctAvailable;
+                    {
+                        const decimal MIN_TILE_QTY_FOR_DISCOUNT_20_PCT = 500, MIN_TILE_QTY_FOR_DISCOUNT_50_PCT = 1000; // м. кв.
+                        discount20PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_20_PCT && tileQuontiti < MIN_TILE_QTY_FOR_DISCOUNT_50_PCT;
+                        discount50PctAvailable = tileQuontiti >=MIN_TILE_QTY_FOR_DISCOUNT_50_PCT;
+                    }
 
                     if (discount20PctAvailable)
                     {
                         discountPersentage = 20; // %
                     }
+
                     else
                     {
-                        discountPersentage = 10; // %
+                        if (discount50PctAvailable)
+                        {
+                            discountPersentage = 50; //%
+                        }
+                        else
+                        {
+                            discountPersentage = 0; //%
+                        }
 
                     }
                 }
 
                 discount = tileCost / 100 * discountPersentage;
             }
-            
+
             decimal paymentAmoount = tileCost - discount;
 
 
@@ -55,7 +62,7 @@ namespace Conditionals
             Console.WriteLine($"Сумма к оплате        : {paymentAmoount} руб.");
 
             Console.ReadLine();
-            
+
         }
     }
 }
