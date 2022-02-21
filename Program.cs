@@ -27,26 +27,22 @@ namespace Conditionals
                     {
                         const decimal MIN_TILE_QTY_FOR_DISCOUNT_20_PCT = 500, MIN_TILE_QTY_FOR_DISCOUNT_50_PCT = 1000; // м. кв.
                         discount20PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_20_PCT && tileQuontiti < MIN_TILE_QTY_FOR_DISCOUNT_50_PCT;
-                        discount50PctAvailable = tileQuontiti >=MIN_TILE_QTY_FOR_DISCOUNT_50_PCT;
+                        discount50PctAvailable = tileQuontiti >= MIN_TILE_QTY_FOR_DISCOUNT_50_PCT;
                     }
 
                     if (discount20PctAvailable)
                     {
                         discountPersentage = 20; // %
                     }
-
+                    else if (discount50PctAvailable)
+                    {
+                        discountPersentage = 50; //%
+                    }
                     else
                     {
-                        if (discount50PctAvailable)
-                        {
-                            discountPersentage = 50; //%
-                        }
-                        else
-                        {
-                            discountPersentage = 0; //%
-                        }
-
+                        discountPersentage = 0; //%
                     }
+
                 }
 
                 discount = tileCost / 100 * discountPersentage;
